@@ -1,6 +1,7 @@
 version: '3.3'
 services:
   db:
+    container_name: mysql_crud_template
     image: mysql:5.7
     restart: always
     environment:
@@ -13,4 +14,4 @@ services:
       # <Port exposed> : < MySQL Port running inside container>
       - '${MYSQL_EXTERNAL_PORT}:${MYSQL_PORT}'
     volumes:
-      - ../rest_data:/var/lib/mysql
+      - ../docker_data:/var/lib/mysql
