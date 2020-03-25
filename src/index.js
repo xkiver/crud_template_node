@@ -22,9 +22,28 @@ app.use(bodyParser.urlencoded({
  * PATCH --> Actualizar datos...
  */
 
+/**
+ * CRUD -> Create, Read, Update, Delete
+ */
+
 app.get('/', function (req, res) {
     res.send('HELLO WORLD');
 });
+
+app.put('/insert-user', async (req, res) => {
+    const response = await insertUser(req.body.name, req.body.email, req.body.country);
+    res.json(response);
+})
+
+app.get('/users', async (req, res) => {
+    const response = await getAllUsers();
+    res.json(response);
+});
+
+app.get('/users/:email', async (req, res) => {
+    const response = await getUser(req.params.email);
+    res.json(response);
+})
 
 app.listen(port, function () {
     console.log('Escuchando en el puerto ' + port);
